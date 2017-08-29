@@ -1,8 +1,18 @@
 # -*- coding: utf-8 -*-
-"""
+r"""
 Extends the instrument class, and overwrites `Instrument.open_serial`, in order
 to use the `CryomagneticsSerialCommunicator`. This needs to be done because
-Cryomagnetics Instruments are special.
+Cryomagnetics Instruments are special. Communication with a cryomagnetics
+instrument consists of writing a message terminated by ``\r``. The response
+will include the message that was just sent, terminated by ``\r``, with the
+response terminated by ``\r\n``. For example, let's query the instrument for
+its ID using ``*IDN?``. The message we will send is
+
+``*IDN?\r``
+
+And the response from the device will be
+
+``*IDN?\rCryomagneticsLM510\r\n``
 """
 
 # IMPORTS #####################################################################
@@ -23,10 +33,6 @@ class CryomagneticsInstrument(Instrument):
     """
     Base class for Cryomagnetics Instruments
     """
-
-    def __init__(self, filelike):
-        Instrument.__init__(self, filelike)
-
     # pylint: disable=too-many-arguments
     @classmethod
     def open_serial(cls, port=None, baud=9600, vid=None, pid=None,
@@ -101,7 +107,7 @@ class CryomagneticsInstrument(Instrument):
         ser = serial_manager.new_serial_connection(
             port,
             baud=baud,
-            timeout=timeout,
+            timeout=int(timeout),
             write_timeout=write_timeout,
             communicator_type=CryomagneticsSerialCommunicator
         )

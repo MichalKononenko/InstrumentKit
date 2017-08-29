@@ -11,8 +11,9 @@ from time import sleep
 
 import quantities as pq
 
-from instruments.abstract_instruments.cryomagnetics_instrument \
+from instruments.cryomagnetics.cryomagnetics_instrument \
     import CryomagneticsInstrument
+
 
 # CLASSES #####################################################################
 
