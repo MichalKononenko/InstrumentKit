@@ -12,6 +12,7 @@ from . import abstract_instruments
 from .abstract_instruments import Instrument
 
 from . import agilent
+from . import cryomagnetics
 from . import generic_scpi
 from . import holzworth
 from . import hp

@@ -14,12 +14,12 @@ from contextlib import contextmanager
 
 import quantities as pq
 
-from instruments.abstract_instruments import CryomagneticsInstrument
+from instruments.cryomagnetics import _cryomagnetics_instrument
 
 # CLASSES #####################################################################
 
 
-class CryomagneticsLM510(CryomagneticsInstrument):
+class CryomagneticsLM510(_cryomagnetics_instrument.CryomagneticsInstrument):
     """
     Represents a Cryomagnetics LM-510 liquid cryogen level monitor
     """

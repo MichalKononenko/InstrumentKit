@@ -11,14 +11,13 @@ from time import sleep
 
 import quantities as pq
 
-from instruments.cryomagnetics.cryomagnetics_instrument \
-    import CryomagneticsInstrument
+from instruments.cryomagnetics import _cryomagnetics_instrument
 
 
 # CLASSES #####################################################################
 
 
-class Cryomagnetics4G(CryomagneticsInstrument):
+class Cryomagnetics4G(_cryomagnetics_instrument.CryomagneticsInstrument):
     """
     Implements a Cryomagnetics 4G Superconducting magnet power supply.
     """
